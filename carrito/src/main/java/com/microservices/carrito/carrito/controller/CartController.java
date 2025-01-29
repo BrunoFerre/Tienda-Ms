@@ -1,13 +1,20 @@
 package com.microservices.carrito.carrito.controller;
 
 import com.microservices.carrito.carrito.dto.AddProductDTO;
-import com.microservices.carrito.carrito.dto.CartDTO;
-import com.microservices.carrito.carrito.dto.GetCartDTO;
+import com.microservices.carrito.carrito.dto.gets.CartAndProductsDTO;
+import com.microservices.carrito.carrito.dto.gets.GetCartDTO;
+import com.microservices.carrito.carrito.dto.gets.GetDetailsDTO;
+import com.microservices.carrito.carrito.dto.gets.GetProductDTO;
 import com.microservices.carrito.carrito.model.Cart;
+import com.microservices.carrito.carrito.model.Details;
 import com.microservices.carrito.carrito.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/cart")
@@ -57,10 +64,21 @@ public class CartController {
     }
 
     @GetMapping("/{id}/details")
-    public ResponseEntity<Object> getCartComplete(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getDetails(@PathVariable("id") Long id) {
         try {
-            CartDTO cart = cartService.getCart(id);
-            return ResponseEntity.ok(cart.getDetails());
+            Cart cart = cartService.getCartById(id);
+            List<Details> details = cart.getDetails();
+            List<Long> productIds = details.stream().map(Details::getProductId).toList();
+            List<GetProductDTO> getProductDTOS = new ArrayList<>();
+            int cont = 0;
+            for (Long producto : productIds) {
+                GetProductDTO product = cartService.getProduct(producto);
+                product.setQuantity(details.get(cont).getQuantity());
+                getProductDTOS.add(product);
+                cont++;
+            }
+            CartAndProductsDTO cartAndProductsDTO = new CartAndProductsDTO(cart, getProductDTOS);
+            return ResponseEntity.ok(cartAndProductsDTO);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

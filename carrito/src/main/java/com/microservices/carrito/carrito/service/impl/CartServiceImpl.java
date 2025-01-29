@@ -1,8 +1,8 @@
 package com.microservices.carrito.carrito.service.impl;
 
 import com.microservices.carrito.carrito.dto.AddProductDTO;
-import com.microservices.carrito.carrito.dto.GetCartDTO;
-import com.microservices.carrito.carrito.dto.GetProductDTO;
+import com.microservices.carrito.carrito.dto.gets.GetCartDTO;
+import com.microservices.carrito.carrito.dto.gets.GetProductDTO;
 import com.microservices.carrito.carrito.model.Cart;
 import com.microservices.carrito.carrito.model.Details;
 import com.microservices.carrito.carrito.repository.ApiProduct;
@@ -41,6 +41,7 @@ public class CartServiceImpl implements CartService {
         return apiProduct.existProduct(productId);
     }
 
+    @Override
     public GetProductDTO getProduct(Long productId) {
         return apiProduct.getProduct(productId);
     }
@@ -53,6 +54,10 @@ public class CartServiceImpl implements CartService {
             Details details = new Details(product.getId(), addProductDTO.getQuantity(), product.getPrice());
             details.setCart(cart);
             detailsRepository.save(details);
+            Double total = product.getPrice() * addProductDTO.getQuantity();
+            System.out.println(total);
+            cart.setTotal(cart.getTotal() + total);
+            cartRepository.save(cart);
         } else {
             throw new RuntimeException("Product not found");
         }

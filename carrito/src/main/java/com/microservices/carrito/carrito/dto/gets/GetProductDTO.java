@@ -1,20 +1,22 @@
-package com.microservices.carrito.carrito.dto;
+package com.microservices.carrito.carrito.dto.gets;
 
 public class GetProductDTO {
     private Long id;
     private String number;
     private String name, brand;
     private double price;
+    private Integer quantity;
 
     public GetProductDTO() {
     }
 
-    public GetProductDTO(Long id, String number, String name, String brand, double price) {
+    public GetProductDTO(Long id, String number, String name, String brand, double price, Integer quantity) {
         this.id = id;
         this.number = number;
         this.name = name;
         this.brand = brand;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -35,5 +37,13 @@ public class GetProductDTO {
 
     public double getPrice() {
         return price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

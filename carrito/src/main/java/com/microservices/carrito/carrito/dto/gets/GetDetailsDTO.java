@@ -1,10 +1,9 @@
-package com.microservices.carrito.carrito.dto;
+package com.microservices.carrito.carrito.dto.gets;
 
 import com.microservices.carrito.carrito.model.Details;
 
 public class GetDetailsDTO {
     private Long id;
-    private String name;
     private Long productId;
     private Integer quantity;
     private Double price;
@@ -13,7 +12,6 @@ public class GetDetailsDTO {
     }
     public GetDetailsDTO(Details details){
         this.id = details.getId();
-        this.name = name;
         this.productId = details.getProductId();
         this.quantity = details.getQuantity();
         this.price = details.getPrice();
@@ -34,5 +32,4 @@ public class GetDetailsDTO {
     public Double getPrice() {
         return price;
     }
-
 }

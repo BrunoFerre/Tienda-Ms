@@ -1,4 +1,4 @@
-package com.microservices.carrito.carrito.dto;
+package com.microservices.carrito.carrito.dto.gets;
 
 import com.microservices.carrito.carrito.model.Cart;
 import java.util.List;

@@ -16,8 +16,7 @@ public class ProductoApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProductoApplication.class, args);
     }
-
-   /* @Bean
+    /* @Bean
     public CommandLineRunner initData(ProductRepository productoRepository) {
         return (args) -> {
             productoRepository.save(new Product("PR" + GenerateNumber.getRandomNumber(0, 1000), "Laptop", "HP", 1000.0));
