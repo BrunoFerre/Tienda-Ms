@@ -1,0 +1,20 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/BrunoFerre/microservice.git  # El URI de tu repositorio Git
+          search-paths: config-server  # Ruta en tu repositorio donde están los archivos de configuración
+          username: ${GIT_USERNAME}  # Tu variable de entorno para el nombre de usuario
+          password: ${GIT_PASSWORD}  # Tu variable de entorno para la contraseña
+        bootstrap: true  # Mantén esto como 'false' si no necesitas propiedades adicionales al inicio
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
