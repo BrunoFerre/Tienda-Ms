@@ -3,7 +3,6 @@ package com.microservices.carrito.carrito.controller;
 import com.microservices.carrito.carrito.dto.AddProductDTO;
 import com.microservices.carrito.carrito.dto.gets.CartAndProductsDTO;
 import com.microservices.carrito.carrito.dto.gets.GetCartDTO;
-import com.microservices.carrito.carrito.dto.gets.GetDetailsDTO;
 import com.microservices.carrito.carrito.dto.gets.GetProductDTO;
 import com.microservices.carrito.carrito.model.Cart;
 import com.microservices.carrito.carrito.model.Details;

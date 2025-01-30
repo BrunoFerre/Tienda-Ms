@@ -7,7 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaSv" />
+        <module name="api-gateway" />
         <module name="ventas" />
+        <module name="config-server" />
         <module name="carrito" />
         <module name="Producto" />
       </profile>
@@ -17,7 +19,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EurekaSv" options="-parameters" />
       <module name="Producto" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="carrito" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="ventas" options="-parameters" />
     </option>
   </component>
