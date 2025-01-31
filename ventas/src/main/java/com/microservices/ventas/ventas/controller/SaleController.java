@@ -19,7 +19,6 @@ public class SaleController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
     @PostMapping
     public ResponseEntity<Object> requestSave(@RequestParam Long cartId) {
         try {

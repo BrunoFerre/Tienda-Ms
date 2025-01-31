@@ -35,29 +35,17 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public Sale getSaleById(Long id) {
-        return saleRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public GetSaleDTO getSaleDTOById(Long id) {
-        Sale sale = getSaleById(id);
+    public GetSaleDTO getSaleById(Long id) {
+        Sale sale = saleRepository.findById(id).orElse(null);
         if (sale == null) {
             return null;
+        }else{
+            GetSaleDTO products = apiCart.getCart(sale.getCartId());
+            return new GetSaleDTO(sale, products.getIdSale(), products.getCartId(), products.getTotal(), products.getProducts());
         }
-        return new GetSaleDTO(sale);
     }
 
     public GetProductDTO getProduct(Long id) {
         return apiProduct.getProductById(id);
-    }
-
-    @Override
-    public GetSaleDTO getSaleByCartId(Long id) {
-        Sale sale = saleRepository.getByCartId(id);
-        if (sale == null) {
-            return null;
-        }
-        return new GetSaleDTO(sale);
     }
 }

@@ -3,6 +3,7 @@ package com.microservices.producto.Producto.controller;
 import com.microservices.producto.Producto.dto.GetProductDTO;
 import com.microservices.producto.Producto.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,13 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Value("${server.port}")
+    private int port;
 
     @GetMapping
     public ResponseEntity<Object> getProducts() {
         try {
+            System.out.println("Port: " + port);
             List<GetProductDTO> products = productService.getAllProducts();
             return ResponseEntity.ok(products);
         } catch (Exception e) {
