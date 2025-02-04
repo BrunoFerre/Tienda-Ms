@@ -31,4 +31,8 @@ public class PersonServiceImpl implements PersonService {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+    @Override
+    public boolean existPerson(Long id) {
+        return personRepository.existsById(id);
+    }
 }

@@ -10,7 +10,8 @@ public interface CartService {
 
     Cart getCartById(Long cartId);
 
-    void createCard(Cart cart);
+
+    void createCard(Long userId);
 
     GetProductDTO getProduct(Long productId);
 

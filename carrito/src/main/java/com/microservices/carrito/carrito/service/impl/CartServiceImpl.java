@@ -5,6 +5,7 @@ import com.microservices.carrito.carrito.dto.gets.GetCartDTO;
 import com.microservices.carrito.carrito.dto.gets.GetProductDTO;
 import com.microservices.carrito.carrito.model.Cart;
 import com.microservices.carrito.carrito.model.Details;
+import com.microservices.carrito.carrito.repository.ApiPerson;
 import com.microservices.carrito.carrito.repository.ApiProduct;
 import com.microservices.carrito.carrito.repository.CartRepository;
 import com.microservices.carrito.carrito.repository.DetailsRepository;
@@ -20,6 +21,8 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private ApiProduct apiProduct;
     @Autowired
+    private ApiPerson apiPerson;
+    @Autowired
     private DetailsRepository detailsRepository;
 
     @Override
@@ -33,8 +36,14 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void createCard(Cart cart) {
-        cartRepository.save(cart);
+    public void createCard(Long userId) {
+        if (existPerson(userId)) {
+            Cart cart = new Cart(0.0, userId);
+            cartRepository.save(cart);
+        } else {
+            throw new RuntimeException("Person not found");
+        }
+
     }
 
     public boolean existProduct(Long productId) {
@@ -66,5 +75,9 @@ public class CartServiceImpl implements CartService {
     @Override
     public boolean existsCart(Long cartId) {
         return cartRepository.existsById(cartId);
+    }
+
+    boolean existPerson(Long id) {
+        return apiPerson.existPerson(id);
     }
 }

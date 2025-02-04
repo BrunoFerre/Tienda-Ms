@@ -29,4 +29,8 @@ public class PersonController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/exist")
+    public boolean existPerson(@RequestParam Long id) {
+        return personService.existPerson(id);
+    }
 }

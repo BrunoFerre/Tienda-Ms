@@ -8,4 +8,6 @@ public interface PersonService {
     void save(PersonDTO person);
 
     GetPersonDTO findById(Long id);
+
+    boolean existPerson(Long id);
 }

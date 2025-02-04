@@ -34,11 +34,10 @@ public class CartController {
     @PostMapping
     public ResponseEntity<Object> createCart(@RequestParam Long userId) {
         try {
-            Cart cart = new Cart(0.0, userId);
-            cartService.createCard(cart);
-            return ResponseEntity.ok(cart);
+            cartService.createCard(userId);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), null, 400);
         }
     }
 
@@ -46,7 +45,7 @@ public class CartController {
     public ResponseEntity<Object> addProduct(@PathVariable("id") Long id, @RequestBody AddProductDTO addProductDTO) {
         try {
             cartService.addProduct(id, addProductDTO);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body("Product Added");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
