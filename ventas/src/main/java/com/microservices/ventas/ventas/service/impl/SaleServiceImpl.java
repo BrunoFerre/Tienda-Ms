@@ -35,7 +35,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public GetSaleDTO getSaleById(Long id) {
+    public Object getSaleById(Long id) {
         Sale sale = saleRepository.findById(id).orElse(null);
         if (sale == null) {
             return null;

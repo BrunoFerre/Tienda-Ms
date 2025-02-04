@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -13,7 +14,19 @@
         <module name="carrito" />
         <module name="Producto" />
       </profile>
+      <profile name="Annotation profile for persona" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+        </processorPath>
+        <module name="persona" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="personas-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -22,6 +35,8 @@
       <module name="api-gateway" options="-parameters" />
       <module name="carrito" options="-parameters" />
       <module name="config-server" options="-parameters" />
+      <module name="persona" options="-parameters" />
+      <module name="personas-service" options="-parameters" />
       <module name="ventas" options="-parameters" />
     </option>
   </component>

@@ -6,6 +6,6 @@ public interface SaleService {
 
     void saveSale(Long cartId);
 
-    GetSaleDTO getSaleById(Long id);
+    Object getSaleById(Long id);
 
 }
